@@ -9,7 +9,7 @@ st.markdown(
     <style>
     .title {
         text-align: center;
-        font-size: 40px !important;
+        font-size: 60px !important;
         font-weight: bold;
     }
     </style>
