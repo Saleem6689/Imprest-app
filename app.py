@@ -64,8 +64,7 @@ def calculate_totals(data):
     return data
 
 # Main app
-st.title("TIET, Patiala")
-st.title("MED Imprest Account")
+st.title("MED, TIET, Patiala")
 
 # Input fields
 st.header("Bill & Adv. Entry")
