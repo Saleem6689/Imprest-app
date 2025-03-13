@@ -69,6 +69,8 @@ st.title("Mechanical Department Imprest Account")
 
 # Input fields
 st.header("Advanced & Bill Entry")
+# Always prompt for Initial Cash in Hand
+initial_cash = st.number_input("Initial Cash in Hand*", min_value=0, value=0)
 date = st.date_input("Date", value=datetime.today())
 name = st.text_input("Name*")
 lab = st.text_input("Lab")
@@ -80,13 +82,6 @@ travel_allowance = st.number_input("Travel Allowance")
 payment_return_from_person = st.number_input("Payment Return From Person", min_value=0, value=0)
 payment_return_to_person = st.number_input("Payment Return To Person", min_value=0, value=0)
 remark = st.text_input("Supplier Name & Items")
-
-# Initial Cash in Hand
-if not os.path.exists("data.xlsx"):
-    initial_cash = st.number_input("Initial Cash in Hand*", min_value=0, value=0)
-else:
-    df = pd.read_excel("data.xlsx")
-    initial_cash = df["Initial Cash in Hand"].iloc[0]  # Get the initial cash in hand value
 
 # Calculate totals
 if bill_amount and advance_given and travel_allowance:
