@@ -64,11 +64,11 @@ def calculate_totals(data):
     return data
 
 # Main app
-st.title("Thapar Institute Of Engineering & Technology, Patiala")
-st.title("Mechanical Department Imprest Account")
+st.title("TIET, Patiala")
+st.title("MED Imprest Account")
 
 # Input fields
-st.header("Advanced & Bill Entry")
+st.header("Bill & Adv. Entry")
 # Always prompt for Initial Cash in Hand
 initial_cash = st.number_input("Initial Cash in Hand*", min_value=0, value=0)
 date = st.date_input("Date", value=datetime.today())
