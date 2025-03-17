@@ -3,14 +3,24 @@ import pandas as pd
 import os
 from datetime import datetime
 
-# Custom CSS to center the title
+# Custom CSS for white background and maroon text
 st.markdown(
     """
     <style>
+    /* Set background color to white */
+    body {
+        background-color: white;
+    }
+    /* Set text color to maroon */
+    .stApp, .stMarkdown, .stTextInput, .stNumberInput, .stDateInput, .stSelectbox, .stButton, .stDataFrame {
+        color: maroon !important;
+    }
+    /* Center the title */
     .title {
         text-align: center;
         font-size: 60px !important;
         font-weight: bold;
+        color: maroon !important;
     }
     </style>
     """,
@@ -19,7 +29,6 @@ st.markdown(
 
 # Centered title
 st.markdown('<p class="title">Imprest Account</p>', unsafe_allow_html=True)
-
 # Function to save data to Excel
 def save_data(data):
     if os.path.exists("data.xlsx"):
