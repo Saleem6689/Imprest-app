@@ -38,11 +38,21 @@ with col2:
 # Centered title
 st.markdown('<p class="title">Imprest Account, MED, TIET, Patiala</p>', unsafe_allow_html=True)
 
+# Function to get the last saved "Cash in Hand" value
+def get_last_cash_in_hand():
+    if os.path.exists("data.xlsx"):
+        df = pd.read_excel("data.xlsx")
+        if not df.empty:
+            # Return the last entry's "Cash in Hand" value
+            return df.iloc[-1]["Cash in Hand"]
+    return 0  # Default value if no data exists
+
 # Rest of your app code...
 st.header("Bill & Adv. Entry")
 
 # Input fields and other functionality...
-initial_cash = st.number_input("Initial Cash in Hand*", min_value=0, value=0)
+# Set the default value for Initial Cash in Hand from the last saved entry
+initial_cash = st.number_input("Initial Cash in Hand*", min_value=0, value=get_last_cash_in_hand())
 date = st.date_input("Date", value=datetime.today())
 name = st.text_input("Name*")
 lab = st.text_input("Lab")
