@@ -47,6 +47,34 @@ def get_last_cash_in_hand():
             return df.iloc[-1]["Cash in Hand"]
     return 0  # Default value if no data exists
 
+# Function to validate inputs
+def validate_inputs(data):
+    if not data["Name"]:
+        st.error("Name is required!")
+        return False
+    if data["Bill Amount"] < 0 or data["Advance Given"] < 0 or data["Travel Allowance"] < 0:
+        st.error("Negative values are not allowed!")
+        return False
+    return True
+
+# Function to save data to Excel
+def save_data(data):
+    if os.path.exists("data.xlsx"):
+        df = pd.read_excel("data.xlsx")
+        df = pd.concat([df, pd.DataFrame([data])], ignore_index=True)
+    else:
+        df = pd.DataFrame([data])
+    df.to_excel("data.xlsx", index=False)
+    st.success("Data saved successfully!")
+
+# Function to reset/delete saved data
+def reset_data():
+    if os.path.exists("data.xlsx"):
+        os.remove("data.xlsx")
+        st.success("Saved data has been reset!")
+    else:
+        st.warning("No data to reset.")
+
 # Rest of your app code...
 st.header("Bill & Adv. Entry")
 
@@ -106,8 +134,6 @@ if st.button("Save"):
     
     # Validate inputs
     if validate_inputs(data):
-        # Calculate totals
-        data = calculate_totals(data)
         # Save data
         save_data(data)
 
