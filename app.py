@@ -3,7 +3,7 @@ import pandas as pd
 import os
 from datetime import datetime
 
-# Custom CSS for white background, maroon text, and logo positioning
+# Custom CSS for white background and maroon text
 st.markdown(
     """
     <style>
@@ -22,85 +22,27 @@ st.markdown(
         font-weight: bold;
         color: maroon !important;
     }
-    /* Position the logo in the upper-right corner */
-    .logo {
-        position: fixed;
-        top: 10px;
-        right: 10px;
-        z-index: 1000;
-    }
     </style>
     """,
     unsafe_allow_html=True,
 )
 
-# Add the logo to the upper-right corner
+# Add the logo to the upper-right corner using st.image
 logo_url = "https://github.com/Saleem6689/Imprest-app/blob/main/tiet_logo.png?raw=true"
 
-# Use columns to position the logo
-col1, col2 = st.columns([1, 1])
+# Use columns to position the logo in the upper-right corner
+col1, col2 = st.columns([1, 1])  # Create two columns
 with col2:
-    st.markdown(
-        f"""
-        <div class="logo">
-            <img src="{logo_url}" width="100">
-        </div>
-        """,
-        unsafe_allow_html=True,
-    )
+    st.image(logo_url, width=100, use_column_width=False, output_format="PNG")
 
 # Centered title
 st.markdown('<p class="title">Imprest Account</p>', unsafe_allow_html=True)
 
-# Function to save data to Excel
-def save_data(data):
-    if os.path.exists("data.xlsx"):
-        df = pd.read_excel("data.xlsx")
-        df = pd.concat([df, pd.DataFrame([data])], ignore_index=True)
-    else:
-        df = pd.DataFrame([data])
-    df.to_excel("data.xlsx", index=False)
-    st.success("Data saved successfully!")
-
-# Function to reset/delete saved data
-def reset_data():
-    if os.path.exists("data.xlsx"):
-        os.remove("data.xlsx")
-        st.success("Saved data has been reset!")
-    else:
-        st.warning("No data to reset.")
-
-# Function to validate inputs
-def validate_inputs(data):
-    if not data["Name"]:
-        st.error("Name is required!")
-        return False
-    if data["Bill Amount"] < 0 or data["Advance Given"] < 0 or data["Travel Allowance"] < 0:
-        st.error("Negative values are not allowed!")
-        return False
-    return True
-
-# Function to calculate totals
-def calculate_totals(data):
-    # Calculate Bill/Balance/Pending Payment
-    data["Bill/Balance/Pending Payment"] = data["Advance Given"] - data["Bill Amount"] - data["Travel Allowance"]
-    
-    # Calculate Final Settlement
-    data["Final Settlement"] = data["Bill Amount"] - data["Advance Given"] + data["Travel Allowance"]
-    
-    # Calculate Total Cash
-    data["Total Cash"] = data["Bill Amount"] + data["Travel Allowance"]
-    
-    # Calculate Cash in Hand
-    data["Cash in Hand"] = data["Initial Cash in Hand"] - data["Total Cash"]
-    return data
-
-# Main app
+# Rest of your app code...
 st.title("MED, TIET, Patiala")
-
-# Input fields
 st.header("Bill & Adv. Entry")
-# Always prompt for Initial Cash in Hand
+
+# Input fields and other functionality...
 initial_cash = st.number_input("Initial Cash in Hand*", min_value=0, value=0)
 date = st.date_input("Date", value=datetime.today())
 name = st.text_input("Name*")
