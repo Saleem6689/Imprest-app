@@ -47,7 +47,7 @@ st.markdown(
 )
 
 # Centered title
-st.markdown('<p class="title">Imprest Account, MED, TIET, Patiala</p>', unsafe_allow_html=True)
+st.markdown('<p class="title">IMPEREST ACCOUNT, MED, TIET, PATIALA</p>', unsafe_allow_html=True)
 
 # Rest of your app code...
 st.header("Bill & Adv. Entry")
