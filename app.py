@@ -26,7 +26,15 @@ st.markdown(
     """,
     unsafe_allow_html=True,
 )
-
+# Add the logo to the upper-right corner
+st.markdown(
+    """
+    <div class="logo">
+        <img src="https://upload.wikimedia.org/wikipedia/en/thumb/7/7e/Thapar_Institute_of_Engineering_and_Technology_logo.png/200px-Thapar_Institute_of_Engineering_and_Technology_logo.png" width="100">
+    </div>
+    """,
+    unsafe_allow_html=True,
+)
 # Centered title
 st.markdown('<p class="title">Imprest Account</p>', unsafe_allow_html=True)
 # Function to save data to Excel
