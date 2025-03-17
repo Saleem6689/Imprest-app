@@ -29,7 +29,7 @@ st.markdown(
 st.markdown(
     """
     <div class="logo">
-        <img src="tiet_logo.png" width="100">
+        <img src="TIET_Logo.png" width="100">
     </div>
     """,
     unsafe_allow_html=True,
