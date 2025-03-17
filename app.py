@@ -37,17 +37,17 @@ st.markdown(
 # Add the logo to the upper-right corner
 logo_url = "https://github.com/Saleem6689/Imprest-app/blob/main/tiet_logo.png?raw=true"
 
-# Debugging: Print the logo URL to ensure it's correct
-st.write(f"Logo URL: {logo_url}")
-
-st.markdown(
-    f"""
-    <div class="logo">
-        <img src="{logo_url}" width="100">
-    </div>
-    """,
-    unsafe_allow_html=True,
-)
+# Use columns to position the logo
+col1, col2 = st.columns([1, 1])
+with col2:
+    st.markdown(
+        f"""
+        <div class="logo">
+            <img src="{logo_url}" width="100">
+        </div>
+        """,
+        unsafe_allow_html=True,
+    )
 
 # Centered title
 st.markdown('<p class="title">Imprest Account</p>', unsafe_allow_html=True)
