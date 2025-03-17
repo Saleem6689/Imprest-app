@@ -30,7 +30,7 @@ st.markdown(
 st.markdown(
     """
     <div class="logo">
-        <img src="https://www.bing.com/images/search?view=detailV2&ccid=vKCcpzmJ&id=7297EEB300E31BD3D69D8F424DB21CA2BFDA643D&thid=OIP.vKCcpzmJmMOlnTTjjE7tnQAAAA&mediaurl=https%3a%2f%2fwww.mathworks.com%2facademia%2ftah-portal%2fthapar-institute-of-engineering-and-technology-40604939%2f_jcr_content%2fschoolLogo.adapt.full.medium.jpg%2f1592560897862.jpg&exph=260&expw=458&q=thapar+logo&simid=608022646929052414&FORM=IRPRST&ck=0816CEFF1833BD6906588229FA8CF96D&selectedIndex=0&itb=0&idpp=overlayview&ajaxhist=0&ajaxserp=0" width="100">
+        <img src="https://upload.wikimedia.org/wikipedia/en/thumb/7/7e/Thapar_Institute_of_Engineering_and_Technology_logo.png/200px-Thapar_Institute_of_Engineering_and_Technology_logo.png" width="100">
     </div>
     """,
     unsafe_allow_html=True,
