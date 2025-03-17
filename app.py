@@ -39,7 +39,6 @@ with col2:
 st.markdown('<p class="title">Imprest Account, MED, TIET, Patiala</p>', unsafe_allow_html=True)
 
 # Rest of your app code...
-st.title("MED, TIET, Patiala")
 st.header("Bill & Adv. Entry")
 
 # Input fields and other functionality...
