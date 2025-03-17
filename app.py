@@ -38,57 +38,11 @@ with col2:
 # Centered title
 st.markdown('<p class="title">Imprest Account, MED, TIET, Patiala</p>', unsafe_allow_html=True)
 
-# Function to get the last saved "Cash in Hand" value
-def get_last_cash_in_hand():
-    if os.path.exists("data.xlsx"):
-        df = pd.read_excel("data.xlsx")
-        if not df.empty:
-            # Return the last entry's "Cash in Hand" value
-            return df.iloc[-1]["Cash in Hand"]
-    return None  # Return None if no data exists
-
-# Function to validate inputs
-def validate_inputs(data):
-    if not data["Name"]:
-        st.error("Name is required!")
-        return False
-    if data["Bill Amount"] < 0 or data["Advance Given"] < 0 or data["Travel Allowance"] < 0:
-        st.error("Negative values are not allowed!")
-        return False
-    return True
-
-# Function to save data to Excel
-def save_data(data):
-    if os.path.exists("data.xlsx"):
-        df = pd.read_excel("data.xlsx")
-        df = pd.concat([df, pd.DataFrame([data])], ignore_index=True)
-    else:
-        df = pd.DataFrame([data])
-    df.to_excel("data.xlsx", index=False)
-    st.success("Data saved successfully!")
-
-# Function to reset/delete saved data
-def reset_data():
-    if os.path.exists("data.xlsx"):
-        os.remove("data.xlsx")
-        st.success("Saved data has been reset!")
-    else:
-        st.warning("No data to reset.")
-
 # Rest of your app code...
 st.header("Bill & Adv. Entry")
 
-# Check if it's the first entry or a subsequent entry
-last_cash_in_hand = get_last_cash_in_hand()
-
 # Input fields and other functionality...
-if last_cash_in_hand is None:
-    # First entry: User provides Initial Cash in Hand
-    initial_cash = st.number_input("Initial Cash in Hand*", min_value=0, value=0)
-else:
-    # Subsequent entries: Initial Cash in Hand is taken from the last entry's Cash in Hand
-    initial_cash = st.number_input("Initial Cash in Hand*", min_value=0, value=last_cash_in_hand)
-
+initial_cash = st.number_input("Initial Cash in Hand*", min_value=0, value=0)
 date = st.date_input("Date", value=datetime.today())
 name = st.text_input("Name*")
 lab = st.text_input("Lab")
@@ -142,6 +96,8 @@ if st.button("Save"):
     
     # Validate inputs
     if validate_inputs(data):
+        # Calculate totals
+        data = calculate_totals(data)
         # Save data
         save_data(data)
 
