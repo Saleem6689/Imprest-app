@@ -36,6 +36,10 @@ st.markdown(
 
 # Add the logo to the upper-right corner
 logo_url = "https://github.com/Saleem6689/Imprest-app/blob/main/tiet_logo.png?raw=true"
+
+# Debugging: Print the logo URL to ensure it's correct
+st.write(f"Logo URL: {logo_url}")
+
 st.markdown(
     f"""
     <div class="logo">
@@ -47,6 +51,7 @@ st.markdown(
 
 # Centered title
 st.markdown('<p class="title">Imprest Account</p>', unsafe_allow_html=True)
+
 # Function to save data to Excel
 def save_data(data):
     if os.path.exists("data.xlsx"):
@@ -78,7 +83,7 @@ def validate_inputs(data):
 # Function to calculate totals
 def calculate_totals(data):
     # Calculate Bill/Balance/Pending Payment
-    data["Bill/Balance/Pending Payment"] = data["Advance Given"] - data["Bill Amount"]- data["Travel Allowance"]
+    data["Bill/Balance/Pending Payment"] = data["Advance Given"] - data["Bill Amount"] - data["Travel Allowance"]
     
     # Calculate Final Settlement
     data["Final Settlement"] = data["Bill Amount"] - data["Advance Given"] + data["Travel Allowance"]
