@@ -103,7 +103,7 @@ else:
     bill_balance_pending = 0
     final_settlement = 0
     total_cash = 0
-    cash_in_hand = initial_cash
+    cash_in_hand = initial_cash  # Use the provided Initial Cash in Hand
 
 # Display calculated fields
 st.write(f"**Bill/Balance/Pending Payment:** {bill_balance_pending}")
