@@ -35,7 +35,7 @@ st.markdown(
 )
 
 # Add the logo to the upper-right corner
-logo_url = "https://github.com/Saleem6689/Imprest-app/blob/main/TIET_Logo.png?raw=true"
+logo_url = "https://github.com/Saleem6689/Imprest-app/blob/main/tiet_logo.png?raw=true"
 st.markdown(
     f"""
     <div class="logo">
