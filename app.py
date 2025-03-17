@@ -18,7 +18,7 @@ st.markdown(
     /* Center the title */
     .title {
         text-align: center;
-        font-size: 60px !important;
+        font-size: 40px !important;
         font-weight: bold;
         color: maroon !important;
     }
