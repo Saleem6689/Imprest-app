@@ -33,7 +33,7 @@ logo_url = "https://github.com/Saleem6689/Imprest-app/blob/main/tiet_logo.png?ra
 # Use columns to position the logo in the upper-right corner
 col1, col2 = st.columns([1, 1])  # Create two columns
 with col2:
-    st.image(logo_url, width=100, use_column_width=False, output_format="PNG")
+    st.image(logo_url, width=100, use_container_width=False, output_format="PNG")
 
 # Centered title
 st.markdown('<p class="title">Imprest Account</p>', unsafe_allow_html=True)
