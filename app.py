@@ -38,49 +38,11 @@ with col2:
 # Centered title
 st.markdown('<p class="title">Imprest Account, MED, TIET, Patiala</p>', unsafe_allow_html=True)
 
-# Function to get the last saved "Cash in Hand" value
-def get_last_cash_in_hand():
-    if os.path.exists("data.xlsx"):
-        df = pd.read_excel("data.xlsx")
-        if not df.empty:
-            # Return the last entry's "Cash in Hand" value
-            return df.iloc[-1]["Cash in Hand"]
-    return 0  # Default value if no data exists
-
-# Function to validate inputs
-def validate_inputs(data):
-    if not data["Name"]:
-        st.error("Name is required!")
-        return False
-    if data["Bill Amount"] < 0 or data["Advance Given"] < 0 or data["Travel Allowance"] < 0:
-        st.error("Negative values are not allowed!")
-        return False
-    return True
-
-# Function to save data to Excel
-def save_data(data):
-    if os.path.exists("data.xlsx"):
-        df = pd.read_excel("data.xlsx")
-        df = pd.concat([df, pd.DataFrame([data])], ignore_index=True)
-    else:
-        df = pd.DataFrame([data])
-    df.to_excel("data.xlsx", index=False)
-    st.success("Data saved successfully!")
-
-# Function to reset/delete saved data
-def reset_data():
-    if os.path.exists("data.xlsx"):
-        os.remove("data.xlsx")
-        st.success("Saved data has been reset!")
-    else:
-        st.warning("No data to reset.")
-
 # Rest of your app code...
 st.header("Bill & Adv. Entry")
 
 # Input fields and other functionality...
-# Set the default value for Initial Cash in Hand from the last saved entry
-initial_cash = st.number_input("Initial Cash in Hand*", min_value=0, value=get_last_cash_in_hand())
+initial_cash = st.number_input("Initial Cash in Hand*", min_value=0, value=0)
 date = st.date_input("Date", value=datetime.today())
 name = st.text_input("Name*")
 lab = st.text_input("Lab")
@@ -103,7 +65,7 @@ else:
     bill_balance_pending = 0
     final_settlement = 0
     total_cash = 0
-    cash_in_hand = initial_cash  # Use the provided Initial Cash in Hand
+    cash_in_hand = initial_cash
 
 # Display calculated fields
 st.write(f"**Bill/Balance/Pending Payment:** {bill_balance_pending}")
@@ -134,6 +96,8 @@ if st.button("Save"):
     
     # Validate inputs
     if validate_inputs(data):
+        # Calculate totals
+        data = calculate_totals(data)
         # Save data
         save_data(data)
 
