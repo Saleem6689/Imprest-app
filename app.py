@@ -3,7 +3,7 @@ import pandas as pd
 import os
 from datetime import datetime
 
-# Custom CSS for white background and maroon text
+# Custom CSS for white background, maroon text, and logo positioning
 st.markdown(
     """
     <style>
@@ -22,18 +22,29 @@ st.markdown(
         font-weight: bold;
         color: maroon !important;
     }
+    /* Position the logo in the upper-right corner */
+    .logo {
+        position: fixed;
+        top: 10px;
+        right: 10px;
+        z-index: 1000;
+    }
     </style>
     """,
     unsafe_allow_html=True,
 )
+
+# Add the logo to the upper-right corner
+logo_url = "https://github.com/Saleem6689/Imprest-app/blob/main/TIET_Logo.png?raw=true"
 st.markdown(
-    """
+    f"""
     <div class="logo">
-        <img src="TIET_Logo.png" width="100">
+        <img src="{logo_url}" width="100">
     </div>
     """,
     unsafe_allow_html=True,
 )
+
 # Centered title
 st.markdown('<p class="title">Imprest Account</p>', unsafe_allow_html=True)
 # Function to save data to Excel
