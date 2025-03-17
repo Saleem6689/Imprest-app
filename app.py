@@ -36,7 +36,7 @@ with col2:
     st.image(logo_url, width=400, use_container_width=False, output_format="PNG")
 
 # Centered title
-st.markdown('<p class="title">Imprest Account, MED, TIET, Patiala</p>', unsafe_allow_html=True)
+st.markdown('<p class="title">IMPREST ACCOUNT, MED, TIET, Patiala</p>', unsafe_allow_html=True)
 
 # Function to get the last saved "Cash in Hand" value
 def get_last_cash_in_hand():
