@@ -36,7 +36,7 @@ with col2:
     st.image(logo_url, width=400, use_container_width=False, output_format="PNG")
 
 # Centered title
-st.markdown('<p class="title">Imprest Account</p>', unsafe_allow_html=True)
+st.markdown('<p class="title">Imprest Account, MED, TIET, Patiala</p>', unsafe_allow_html=True)
 
 # Rest of your app code...
 st.title("MED, TIET, Patiala")
