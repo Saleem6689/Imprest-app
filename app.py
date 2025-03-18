@@ -61,14 +61,17 @@ def validate_inputs(data):
 
 # Function to calculate totals
 def calculate_totals(data):
+    # Calculate Total Cash
+    if data["Travel Allowance"] == 0:
+        data["Total Cash"] = data["Bill Amount"]  # Only Bill Amount if Travel Allowance is 0
+    else:
+        data["Total Cash"] = data["Bill Amount"] + data["Travel Allowance"]  # Add both if Travel Allowance is not 0
+    
     # Calculate Bill/Balance/Pending Payment
-    data["Bill/Balance/Pending Payment"] = data["Advance Given"] - data["Bill Amount"] - data["Travel Allowance"]
+    data["Bill/Balance/Pending Payment"] = data["Advance Given"] - data["Total Cash"]
     
     # Calculate Final Settlement
     data["Final Settlement"] = data["Bill Amount"] - data["Advance Given"] + data["Travel Allowance"]
-    
-    # Calculate Total Cash
-    data["Total Cash"] = data["Bill Amount"] + data["Travel Allowance"]
     
     # Calculate Cash in Hand
     data["Cash in Hand"] = data["Initial Cash in Hand"] - data["Total Cash"]
@@ -104,14 +107,18 @@ approval = st.selectbox("Approval", ["Approved", "Pending", "Not Required"])
 advance_given = st.number_input("Advance Given", min_value=0, value=0)
 bill_number = st.text_input("Bill Number*")
 bill_amount = st.number_input("Bill Amount*", min_value=0, value=0)
-travel_allowance = st.number_input("Travel Allowance")
+travel_allowance = st.number_input("Travel Allowance", min_value=0, value=0)
 payment_return_from_person = st.number_input("Payment Return From Person", min_value=0, value=0)
 payment_return_to_person = st.number_input("Payment Return To Person", min_value=0, value=0)
 remark = st.text_input("Supplier Name & Items")
 
 # Calculate totals
-if bill_amount and advance_given and travel_allowance:
-    total_cash = bill_amount + travel_allowance
+if bill_amount and advance_given:
+    if travel_allowance == 0:
+        total_cash = bill_amount  # Only Bill Amount if Travel Allowance is 0
+    else:
+        total_cash = bill_amount + travel_allowance  # Add both if Travel Allowance is not 0
+    
     bill_balance_pending = advance_given - total_cash
     final_settlement = bill_amount - advance_given + travel_allowance
     cash_in_hand = initial_cash - total_cash
